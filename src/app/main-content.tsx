@@ -33,9 +33,10 @@ import { parseAsString, useQueryState } from "nuqs";
 import { Input } from "@/components/ui/input";
 import SeminarCard from "@/components/seminar-card";
 import Loading from "./loading";
+import { id } from "date-fns/locale";
 
 export default function MainContent() {
-  const { data: seminars, isPending } = api.seminar.getList.useQuery();
+  const { data, isPending } = api.seminar.getList.useQuery();
 
   const [query, setQuery] = useQueryState<string>("query", parseAsString);
 
@@ -67,9 +68,7 @@ export default function MainContent() {
 
   if (isPending) return <Loading />;
 
-  if (!seminars) throw new Error("Seminar data is not available");
-
-  const filteredSeminars = seminars
+  const filteredSeminars = data?.seminars
     .filter((seminar) => {
       // Filter by date
       if (date?.from) {
@@ -150,6 +149,16 @@ export default function MainContent() {
           )}
         </div>
         <div className="flex flex-wrap items-center gap-2">
+          <div className="rounded-md bg-muted px-4 py-2 text-muted-foreground">
+            {data?.seminars && (
+              <p className="text-sm">
+                Last updated:{" "}
+                {format(new Date(data.lastUpdated ?? ""), "PPpp", {
+                  locale: id,
+                })}
+              </p>
+            )}
+          </div>
           <Select
             value={type ?? ""}
             onValueChange={(value) => setType(value as SeminarType)}
@@ -251,14 +260,14 @@ export default function MainContent() {
 
       {/* List Seminar Card */}
       <div className="flex flex-wrap gap-4">
-        {filteredSeminars.length === 0 ? (
+        {filteredSeminars?.length === 0 ? (
           <div className="flex min-h-[200px] w-full items-center justify-center">
             <p className="text-center text-muted-foreground">
-              No seminars found
+              No data.seminars found
             </p>
           </div>
         ) : (
-          filteredSeminars.map((seminar, idx) => (
+          filteredSeminars?.map((seminar, idx) => (
             <SeminarCard key={idx} idx={idx} seminar={seminar} />
           ))
         )}
