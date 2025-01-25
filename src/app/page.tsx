@@ -35,8 +35,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { id } from "date-fns/locale";
-import { Badge } from "@/components/ui/badge";
 import { api } from "@/trpc/react";
 import { Major, SeminarType } from "@/types/api-response.types";
 import { cn } from "@/lib/utils";
@@ -133,8 +131,8 @@ export default function Home() {
   };
 
   return (
-    <div className="bg-background min-h-screen">
-      <header className="bg-primary-foreground flex items-center justify-between px-4 py-6 text-white">
+    <div className="min-h-screen bg-background">
+      <header className="flex items-center justify-between bg-primary-foreground px-4 py-6 text-white">
         <div className="">
           <h1 className="text-left text-3xl font-bold">Jadwal Seminar</h1>
         </div>
@@ -148,14 +146,14 @@ export default function Home() {
               placeholder="Search seminar..."
               value={query ?? ""}
               onChange={handleSearch}
-              className="border-input bg-background h-10 w-full rounded-md border px-3 pl-10 text-sm"
+              className="h-10 w-full rounded-md border border-input bg-background px-3 pl-10 text-sm"
             />
             {query ? (
               <button
                 onClick={() => setQuery(null)}
                 className="absolute left-3 top-1/2 -translate-y-1/2"
               >
-                <X className="text-muted-foreground h-4 w-4" />
+                <X className="h-4 w-4 text-muted-foreground" />
               </button>
             ) : (
               <div className="absolute left-3 top-1/2 -translate-y-1/2">
@@ -167,7 +165,7 @@ export default function Home() {
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="text-muted-foreground h-4 w-4"
+                  className="h-4 w-4 text-muted-foreground"
                 >
                   <circle cx="11" cy="11" r="8" />
                   <path d="m21 21-4.3-4.3" />
