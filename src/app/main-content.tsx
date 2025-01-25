@@ -252,7 +252,11 @@ export default function MainContent() {
       {/* List Seminar Card */}
       <div className="flex flex-wrap gap-4">
         {filteredSeminars.length === 0 ? (
-          <p className="text-muted-foreground">No seminars found</p>
+          <div className="flex min-h-[200px] w-full items-center justify-center">
+            <p className="text-center text-muted-foreground">
+              No seminars found
+            </p>
+          </div>
         ) : (
           filteredSeminars.map((seminar, idx) => (
             <SeminarCard key={idx} idx={idx} seminar={seminar} />
