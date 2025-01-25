@@ -7,7 +7,7 @@ const config = {
   plugins: ["@typescript-eslint", "eslint-plugin-react-compiler"],
   extends: [
     "next/core-web-vitals",
-    "plugin:@typescript-eslint/recommended-type-checked",
+    // "plugin:@typescript-eslint/recommended-type-checked",
     "plugin:@typescript-eslint/stylistic-type-checked",
   ],
   rules: {

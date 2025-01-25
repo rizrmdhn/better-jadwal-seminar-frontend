@@ -3,8 +3,8 @@ import "@/styles/globals.css";
 import { GeistSans } from "geist/font/sans";
 
 import { TRPCReactProvider } from "@/trpc/react";
-import Providers from "./providers";
-import { api, HydrateClient } from "@/trpc/server";
+import Provide from "./provider";
+
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { env } from "@/env";
 import generateMetadata from "@/lib/generate-metadata";
@@ -14,8 +14,6 @@ export const metadata = generateMetadata();
 export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  void api.seminar.getList.prefetch();
-
   return (
     <html
       lang="en"
@@ -32,13 +30,11 @@ export default async function RootLayout({
         {/* rest of your scripts go under */}
       </head>
       <body>
-        <Providers>
+        <Provide>
           <TRPCReactProvider>
-            <NuqsAdapter>
-              <HydrateClient>{children}</HydrateClient>
-            </NuqsAdapter>
+            <NuqsAdapter>{children}</NuqsAdapter>
           </TRPCReactProvider>
-        </Providers>
+        </Provide>
       </body>
     </html>
   );

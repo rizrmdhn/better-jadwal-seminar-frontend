@@ -7,7 +7,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Major, Seminar, SeminarType } from "@/types/api-response.types";
+import { Major, type Seminar, SeminarType } from "@/types/api-response.types";
 import { cn } from "@/lib/utils";
 import {
   CalendarIcon,
