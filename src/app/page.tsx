@@ -6,7 +6,9 @@ export default async function Home() {
     <div className="min-h-screen bg-background">
       <header className="flex items-center justify-between bg-primary-foreground px-4 py-6 text-white">
         <div className="">
-          <h1 className="text-left text-3xl font-bold">Jadwal Seminar</h1>
+          <h1 className="text-left text-3xl font-bold text-primary">
+            Jadwal Seminar
+          </h1>
         </div>
         <ModeToggle />
       </header>
